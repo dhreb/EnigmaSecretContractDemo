@@ -103,4 +103,15 @@ module.exports = async function(deployer, network, accounts) {
   };
   const address = await deploySecretContract(config);
   console.log(`Secret Contract "${config.filename}" deployed at Enigma address: ${address}`);
+
+  const configMillionairesProblem = {
+    filename: 'millionaires_problem.wasm',
+    fn: 'construct()',
+    args: [],
+    gasLimit: 1000000,
+    gasPrice: utils.toGrains(1),
+    from: accounts[0]
+  };
+  const addressMillionairesProblem = await deploySecretContract(configMillionairesProblem);
+  console.log(`Secret Contract "${configMillionairesProblem.filename}" deployed at Enigma address: ${addressMillionairesProblem}`);
 };
